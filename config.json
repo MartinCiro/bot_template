@@ -1,0 +1,11 @@
+{
+    "dropi": {
+        "url_login": "https://app.dropi.co/auth/login",
+        "url_catalogo": "https://app.dropi.co/dashboard/search?categoryuser=2,1"
+    },
+    "SELENIUM": {
+        "driver_path": "//plugins//gecko//geckodriver.exe"
+    },
+    "PATH_FAISS": "//plugins//faiss//faissIndex.bin",
+    "PATH_CLIP": "//plugins//clip//bpe_simple_vocab_16e6.txt.gz"
+}
