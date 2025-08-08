@@ -33,7 +33,7 @@ py -m PyInstaller --icon="ruta-absoluta-archivo-ico" ruta-abosulta-main-proyecto
 - `--onefile`: Genera un solo archivo ejecutable
 - `--windowed`: Ejecución sin ventana de terminal
 
-> **Nota**: Requiere `pip install pyinstaller`
+> **Nota**: Requiere `pip install pyinstaller pillow`
 
 🔧 **Herramienta útil**: [Complemento RPA para Firefox](https://addons.mozilla.org/en-US/firefox/addon/rpa/)
 
