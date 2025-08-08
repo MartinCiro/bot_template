@@ -1,5 +1,4 @@
-USER=userDropi
-PASSWD=passDropi
+USER=user
+PASSWD=pass
 
-USER_API=apiUser
-PASS_API=passUser
+HEADLESS=True or False

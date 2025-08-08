@@ -1,11 +1,10 @@
 {
-    "dropi": {
-        "url_login": "https://app.dropi.co/auth/login",
-        "url_catalogo": "https://app.dropi.co/dashboard/search?categoryuser=2,1"
+    "sena": {
+        "url_login": "http://senasofiaplus.edu.co:80/sofia-public/",
+        "url_home": "http://senasofiaplus.edu.co/sofia/home/principal.faces",
+        "url_certificado": "https://certificados.sena.edu.co/CertificadoDigital/com.sena.login"
     },
     "SELENIUM": {
         "driver_path": "//plugins//gecko//geckodriver.exe"
-    },
-    "PATH_FAISS": "//plugins//faiss//faissIndex.bin",
-    "PATH_CLIP": "//plugins//clip//bpe_simple_vocab_16e6.txt.gz"
+    }
 }

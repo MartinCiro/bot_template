@@ -6,7 +6,7 @@
 
 //div/text()[contains(., 'búsqueda')] -> Si el texto extraido contiene la palabra clave 'búsqueda'
 
-(/html/body/div[2]/div/div[1]/div/div[3]/div/div[8]/section/div[2]/div/div[*]/div/div[*]/div/div/div[*]/div/div/div/div[*]/section[contains(translate(., 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'aguar')] | /html/body/div[2]/div/div[1]/div/div[3]/div/div[8]/section/div[2]/div/div[*]/div/div[*]/div/div/div[*]/div/div/div/div[*]/section[contains(translate(., 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'ron')])[1] -> Lo mismo que el de abajo
+(//section[contains(translate(., 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'aguar')] | //section[contains(translate(., 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'ron')])[1] -> Lo mismo que el de abajo
 
 (//*[@id="gallery-layout-container"]/div/section[contains(translate(., 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'ron')] 
 | //*[@id="gallery-layout-container"]/div/section[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'aguar')])[1] -> Ambos comparan entre mayuscula y minusculas
@@ -27,8 +27,6 @@
 
 //div[@id="fltAwardDetailFT"]/table/tbody/tr[contains(translate(normalize-space(.), 'ADJUDICATARIO', 'adjudicatario'), "adjudicatario")]/following-sibling::tr -> Seleccionar contenedores siguientes al solicitado
 
-(//li[.//*/*/font[@style='background-color:forestgreen; color:white;border-radius: 5px 5px 5px 5px;padding-left: 5px;padding-right: 5px;']]/following-sibling::li/div/span/span/font)[1] -> Seleccionar contenedores siguientes al solicitado
-
 //div[@id="fltAwardDetailFT"]/table/tbody/tr[contains(translate(normalize-space(.), 'ADJUDICATARIO', 'adjudicatario'), "adjudicatario")]/preceding-sibling::tr -> Seleccionar elementos que estan antes del elemento 
 
 //a[@id="idDay-1"]/ancestor::td -> referencia al padre, lo que edite se basara en filtro id y lo que ejecute se aplicaría en td NO en a
@@ -44,7 +42,44 @@
 
 ////input[@name="form:j_idt139:findMaestroconsecutivo" and ancestor::div[@id="form:popupMaestroFindModalDialog" and contains(@style, "display: block;")]] -> Enfasis en el input (hijo) cuyo padre es display block
 
+//variantes
+
 //div[starts-with(@class, 'containCombo') and contains(translate(text(), 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'AMAZONAS')]
 
 //div[starts-with(@class, 'containCombo') and contains(translate(text, 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'AMAZONAS')]
 //div[starts-with(@class, 'containCombo') and contains(translate(., 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ', 'abcdefghijklmnñopqrstuvwxyz'), 'AMAZONAS')]
+
+//option[contains(normalize-space(text()), 'Aprendiz')]
+
+//select[@id="seleccionRol:roles"]
+
+//div[@data-original-title="Lista de Roles"]
+//span[contains(normalize-space(text()), 'Inscripción')]
+
+//form[@id="foo"]/preceding-sibling::form//select[@value='5']
+//form[@id="foo"]/preceding-sibling::form//select/option[1]
+
+//input[@name="seleccionRol_SUBMIT"]/preceding-sibling::div
+
+//input[@name="seleccionRol_SUBMIT"]/preceding-sibling::div//option[1]
+
+//span[contains(normalize-space(text()), 'Inscripción')]/preceding-sibling::div//option[1]
+
+//tr[contains(translate(normalize-space(.), 'ADJUDICATARIO', 'adjudicatario'), "adjudicatario")]/preceding-sibling::tr 
+
+//h2[contains(translate(normalize-space(.), 'ESTADO DEL CERTIFICADO', 'estado del certificado'), 'adjudicatario')]/preceding-sibling::table
+
+//a[@href='../certificacion/consultarcertificaciones/consultarCertificaciones.faces?menId=65&fwkmenu=si']
+
+//span[contains(normalize-space(text()), 'TECNÓLOGO EN ANALISIS Y DESARROLLO DE SOFTWARE.')]/ancestor::tr
+
+//span[contains(normalize-space(text()), 'Certificación')]/ancestor::a
+//span[contains(normalize-space(text()), 'Certificación')]/ancestor::a/following-sibling::ul//a
+
+//span[contains(normalize-space(text()), 'TECNÓLOGO EN ANALISIS Y DESARROLLO DE SOFTWARE.')]/ancestor::tr/td//img/ancestor::a
+
+//span[contains(., 'TECNÓLOGO EN ANALISIS Y DESARROLLO DE SOFTWARE.')]/ancestor::tr//a[.//img]
+
+//span[contains(., 'TECNÓLOGO EN ANALISIS')]/ancestor::tr//a[contains(@id, 'clConsultaCertificadosgenerados')]
+
+//h2[contains(translate(normalize-space(.), 'ESTADO DEL CERTIFICADO', 'estado del certificado'), 'estado del certificado')]/following-sibling::table//span[contains(text(), 'CERTIFICADO')]

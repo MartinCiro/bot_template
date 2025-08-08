@@ -1,12 +1,14 @@
 # region importando librerias necesarias
+from re import sub
 from os import getcwd
 from cryptography.fernet import Fernet
+from datetime import datetime, timedelta
 from requests import request, exceptions
 from json import load, dump, JSONDecodeError
 # endregion importando librerias necesarias
 
 relativePath = getcwd()
-KEYENCRYPT = "ecTNu1JkrN8WOEZQ667dOGOqBcS9Peh0RShN83l1WK0="
+KEYENCRYPT = "yourKey"
 f = Fernet(KEYENCRYPT)
 # endregion importando librerias necesarias
 
@@ -22,6 +24,22 @@ class Helpers:
         data = self.get_value(key, value)        
         fullpath = relativePath + data
         return fullpath
+    
+    def clean_val(self, valor):
+        clean = sub(r"[^0-9,]", "", valor)  # Elimina todo excepto dígitos y coma
+        return clean
+    
+    def get_current_time(self):
+        now = datetime.now()
+        # Formato: dd/mm/yy, hora en 12h con AM/PM
+        formatted_time = now.strftime("%d/%m/%y %I:%M:%S %p")
+        return formatted_time
+    
+    def calculate_elapsed_time(self, start_time, end_time):
+        elapsed = end_time - start_time
+        # Convertir a formato legible (hh:mm:ss.microsegundos)
+        elapsed_str = str(timedelta(seconds=elapsed))
+        return elapsed_str
     
     def encriptar_data(self, valor: str):
         """

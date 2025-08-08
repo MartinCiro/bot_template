@@ -52,6 +52,8 @@ py -m PyInstaller --icon="ruta-absoluta-archivo-ico" ruta-abosulta-main-proyecto
 
 Debe tener instalada la libreria **Pyinstaller** antes de realizar este paso. **(pip install pyinstaller)**
 
+Herrramienta xpath: https://addons.mozilla.org/en-US/firefox/addon/rpa/
+
 ---
 
 ## 📂 **Estructura del Proyecto**

@@ -1,9 +1,10 @@
+from time import sleep
 from controller.BaseSelenium import BaseSelenium
 from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 from os import getenv
 
-class LoginDropi(BaseSelenium):
+class LoginSena(BaseSelenium):
     """
     Clase encargada de ejecutar acciones automatizadas sobre la plataforma Zentria.
     
@@ -15,12 +16,12 @@ class LoginDropi(BaseSelenium):
         """Constructor de la clase. Hereda de BaseSelenium e inicializa el navegador."""
         load_dotenv()
         super().__init__()
-        self.url_catalogo = self.helper.get_value("dropi", "url_catalogo")
-        self.url_login = self.helper.get_value("dropi", "url_login")
+        self.url_login = self.helper.get_value("sena", "url_login")
+        self.url_home = self.helper.get_value("sena", "url_home")
         self.username  = getenv("USER")
         self.password  = getenv("PASSWD")
         self.login_attempts = 0 
-        self.max_login_attempts = 3
+        self.max_login_attempts = 2
 
     def login(self):
         """Login recursivo con contador de intentos."""
@@ -28,24 +29,40 @@ class LoginDropi(BaseSelenium):
             return False
             
         self.login_attempts += 1
-        avatar_xpath = "//img[contains(@class, 'rounded-circle')]"
         
-        # Paso 1: Cargar página de login si es necesario
-        if not self.wait_for_element(By.XPATH, "//input[@id='email']", timeout=3):
-            self.open_url(self.url_catalogo)
-            #self.open_url(self.url_login)
-
+        # Verificar si ya estamos logueados (fuera del iframe)
+        avatar_xpath = "//h4"
         if self.wait_for_element(By.XPATH, avatar_xpath, timeout=2):
             return True
         
-        # Paso 2: Ingresar credenciales
-        self.send_keys(By.XPATH, "//input[@id='email']", self.username)
-        self.send_keys(By.XPATH, "//input[@id='password']", self.password)
-        self.click(By.XPATH, '//button[@type="button"]')
+        self.open_url(self.url_login)
+
+        try:
+            # 1. Cambiar al iframe
+            if not self.switch_to_frame("registradoBox1"):
+                if self.wait_for_element(By.XPATH, avatar_xpath, timeout=8):
+                    self.driver.switch_to.default_content()  # Asegurarse de salir del iframe
+                    return True
+                raise Exception("No se pudo cambiar al iframe")
+            
+            # 2. Interactuar con elementos DENTRO del iframe (XPaths normales)
+            self.send_keys(By.XPATH, "//input[@id='username']", self.username)
+            self.send_keys(By.XPATH, "//input[@type='password']", self.password)
+            self.send_keys(By.XPATH, "//input[@name='ingresar']", None, clear=False, special_key="ENTER")
+            
+            # 3. Volver al contexto principal
+            self.driver.switch_to.default_content()
+            
+        except Exception as e:
+            try:
+                # Si falla, intentar cambiar al iframe de nuevo
+                self.driver.switch_to.default_content()
+            except Exception:
+                pass
+            return self.login()  
         
-        # Paso 3: Verificar éxito
-        if self.wait_for_element(By.XPATH, avatar_xpath, timeout=8):
+        # Verificar si el login fue exitoso
+        if self.wait_for_element(By.XPATH, avatar_xpath, timeout=2):
             return True
         
-        return self.login()  # Llamada recursiva
-
+        return self.login()  # Llamada recursiva si falla

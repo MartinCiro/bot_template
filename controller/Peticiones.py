@@ -1,4 +1,3 @@
-from controller.APIClient import APIClient
 from dotenv import load_dotenv
 from os import getenv
 
