@@ -53,3 +53,69 @@ py -m PyInstaller --icon="ruta-absoluta-archivo-ico" ruta-abosulta-main-proyecto
 #### 💡 **Creditos**
 
 [Plantilla base](https://github.com/villalbaluis/arquitectura-bots-python) proporcionada por [Luis Villalba](https://github.com/villalbaluis)
+
+
+## 🔄 Diagrama de Ejecución
+
+```mermaid
+graph TD
+    A[Inicio] --> B[Crear entorno virtual]
+    B --> C[Activar entorno]
+    C --> D{¿Actualizar dependencias?}
+    D -->|Sí| E[Ejecutar pipreqs --force]
+    D -->|No| F[Instalar requirements.txt]
+    E --> G[Ejecutar scraper]
+    F --> G
+    G --> H{¿Compilar a .exe?}
+    H -->|Sí| I[Usar PyInstaller]
+    H -->|No| J[Finalizar]
+    I --> K[Generar ejecutable]
+    K --> J
+
+             +---------------------+
+             |      Inicio         |
+             +----------+----------+
+                        |
+                        v
+             +----------+----------+
+             | Crear entorno virtual|
+             +----------+----------+
+                        |
+                        v
+             +----------+----------+
+             | Activar entorno     |
+             +----------+----------+
+                        |
+              +-------------------+
+              |                   |
+              v                   v
+    +----------+----------+ +-----+-----+
+    |Instalar dependencias| | Actualizar|
+    | (requirements.txt)  | | (pipreqs) |
+    +----------+----------+ +-----+-----+
+              |                   |
+              +---------+---------+
+                        |
+                        v
+             +----------+----------+
+             |   Ejecutar scraper  |
+             +----------+----------+
+                        |
+              +-------------------+
+              |                   |
+              v                   v
+   +----------+----------+  +-----+-----+
+   | Compilar a .exe     |  | Finalizar |
+   | (PyInstaller)       |  |           |
+   +----------+----------+  +-----------+
+              |
+              v
+    +----------+----------+
+    | Generar ejecutable  |
+    | (--onefile/windowed)|
+    +----------+----------+
+              |
+              v
+    +----------+----------+
+    |      Finalizar      |
+    +---------------------+
