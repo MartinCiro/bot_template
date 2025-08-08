@@ -1,22 +1,20 @@
-# Guía para configurar un contenedor de scrapping con Docker
+# Guía para configurar un contenedor de scraping con Docker
 
-## Instalar dependencias
+## 📋 Requisitos y configuración inicial
 
-El siguiente comando crea, activa e instala lo necesario:
+### Instalar dependencias
 
 ```bash
 python -m venv venv; venv\Scripts\activate; pip install -r requirements.txt
 ```
 
-## Actualizar dependencias
-
-El siguiente comando crea, activa y actualiza las dependencias necesarias:
+### Actualizar dependencias
 
 ```bash
-python -m venv venv; venv\Scripts\activate; pip install pipreqs; pipreqs . --force 
+python -m venv venv; venv\Scripts\activate; pip install pipreqs; pipreqs . --force
 ```
 
-## 📌 Comentarios útiles para los procesos de automatización
+## 🛠️ Procesos de automatización
 
 ### Conversión de archivo *".py"* a ejecutable *".exe"*
 
@@ -24,16 +22,14 @@ python -m venv venv; venv\Scripts\activate; pip install pipreqs; pipreqs . --for
 py -m PyInstaller --icon="ruta-absoluta-archivo-ico" ruta-abosulta-main-proyecto
 ```
 
-#### 🚀 Opciones de compilado
+#### 🚀 Opciones de compilación:
 
-* **--onefile** Crea el ejecutable en un solo archivo comprimido que lleva el nombre del archivo main pasado, con extensión .exe
-* **--windowed** Dehabilita las ventanas de CMD durante la ejecución del programa.
+- `--onefile`: Genera un solo archivo ejecutable
+- `--windowed`: Ejecución sin ventana de terminal
 
-##### 📄 Nota
+> **Nota**: Requiere `pip install pyinstaller`
 
-Debe tener instalada la libreria **Pyinstaller** antes de realizar este paso. **(pip install pyinstaller)**
-
-Herrramienta xpath: https://addons.mozilla.org/en-US/firefox/addon/rpa/
+🔧 **Herramienta útil**: [Complemento RPA para Firefox](https://addons.mozilla.org/en-US/firefox/addon/rpa/)
 
 ---
 
