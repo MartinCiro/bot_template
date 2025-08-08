@@ -16,25 +16,6 @@ El siguiente comando crea, activa y actualiza las dependencias necesarias:
 python -m venv venv; venv\Scripts\activate; pip install pipreqs; pipreqs . --force 
 ```
 
-## Crear una copia de seguridad de la base de datos
-
-Para generar un respaldo de la base de datos `scrapping`, ejecuta:
-
-```bash
-docker exec -t sql mariadb-dump -u root -p1234 scrapping > respaldoScrapping.sql
-
-```
-
-## Restaurar una copia de seguridad
-
-Si necesitas restaurar un respaldo previo de la base de datos, usa:
-
-```bash
-docker exec -i sql mariadb -u root -p1234 scrapping < respaldoScrapping.sql
-```
-
----
-
 ## 📌 Comentarios útiles para los procesos de automatización
 
 ### Conversión de archivo *".py"* a ejecutable *".exe"*
