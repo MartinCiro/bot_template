@@ -26,8 +26,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN mkdir -p /app/plugins/clip/
-RUN ln -s /usr/local/lib/python3.10/site-packages/clip/bpe_simple_vocab_16e6.txt.gz /app/plugins/clip/
 
 COPY . .
-

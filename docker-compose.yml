@@ -1,18 +1,15 @@
 services:
   python_bot:
-    container_name: python_bot
+    container_name: certificado_monitor
     build:
       context: .
       dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - .:/app
-      - ./plugins/faiss:/app/plugins/faiss
     environment:
       - USER=${USER}
       - PASSWD=${PASSWD}
-      - USER_API=${USER_API}
-      - PASS_API=${PASS_API}
       - HEADLESS=${HEADLESS}
       - DISPLAY=:0
       - PYTHONUNBUFFERED=1
