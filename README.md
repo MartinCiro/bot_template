@@ -14,6 +14,12 @@ python -m venv venv; venv\Scripts\activate; pip install -r requirements.txt
 python -m venv venv; venv\Scripts\activate; pip install pipreqs; pipreqs . --force
 ```
 
+### Ejecutar proyecto
+
+```bash
+python main.py
+```
+
 ## 🛠️ Procesos de automatización
 
 ### Conversión de archivo *".py"* a ejecutable *".exe"*
