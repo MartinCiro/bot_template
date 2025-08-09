@@ -1,11 +1,12 @@
-from controller.BaseSelenium import BaseSelenium
+from controller.Config import Config
 from selenium.webdriver.common.by import By
 
-class Browse_web(BaseSelenium):
+class Browse_web(Config):
     def __init__(self) -> None:
         """Constructor optimizado que usa la instancia singleton del navegador"""
         super().__init__()
-    
+        
+        
     def _navigate_to_aprendiz(self):
         # Navegar hasta aprendiz
         self.send_keys(
@@ -48,6 +49,14 @@ class Browse_web(BaseSelenium):
                     return print("Encontrado" if self.wait_for_element(By.XPATH, "//h2[contains(., 'Estado del Certificado')]/following-sibling::table//span[contains(text(), 'CERTIFICADO')]", timeout=5) else "No encontrado")
             finally:
                 self.driver.switch_to.default_content()
+    
+    """ def _brose_download_certified(self):
+        # 1053872476
+        btn_consult="//input[@name='CONSULTAR']"
+        if not self.wait_for_element(By.XPATH, btn_consult, timeout=2):
+            return False
+        
+        self.open_url(self.url_certificado) """
 
     def navigate_certified(self):
         self._navigate_to_aprendiz()

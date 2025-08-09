@@ -1,10 +1,8 @@
 from time import sleep
-from controller.BaseSelenium import BaseSelenium
+from controller.Config import Config
 from selenium.webdriver.common.by import By
-from dotenv import load_dotenv
-from os import getenv
 
-class LoginSena(BaseSelenium):
+class LoginSena(Config):
     """
     Clase encargada de ejecutar acciones automatizadas sobre la plataforma Zentria.
     
@@ -14,12 +12,7 @@ class LoginSena(BaseSelenium):
 
     def __init__(self) -> None:
         """Constructor de la clase. Hereda de BaseSelenium e inicializa el navegador."""
-        load_dotenv()
         super().__init__()
-        self.url_login = self.helper.get_value("sena", "url_login")
-        self.url_home = self.helper.get_value("sena", "url_home")
-        self.username  = getenv("USER")
-        self.password  = getenv("PASSWD")
         self.login_attempts = 0 
         self.max_login_attempts = 2
 
