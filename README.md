@@ -8,7 +8,30 @@
 python -m venv venv; venv\Scripts\activate; pip install -r requirements.txt
 ```
 
-### Actualizar dependencias
+### 2. Generación de clave de encriptación
+
+```bash
+from cryptography.fernet import Fernet
+
+# Generar nueva clave (ejecutar en consola Python)
+new_key = Fernet.generate_key().decode('utf-8')
+print(f"CLAVE GENERADA: {new_key}")
+```
+
+### 3. Configuración de variables de entorno
+
+Crea un archivo `.env` basado en `example.env` con esta estructura:
+
+```bash
+# Credenciales de Sofia Plus (obligatorias)
+USER=tu_usuario_sofia
+PASSWD=tu_password_sofia
+
+# Configuración del navegador (True = modo invisible, False = mostrar)
+HEADLESS=True
+```
+
+### Actualizar dependencias (Solo desarrollo)
 
 ```bash
 python -m venv venv; venv\Scripts\activate; pip install pipreqs; pipreqs . --force
@@ -33,7 +56,7 @@ py -m PyInstaller --icon="ruta-absoluta-archivo-ico" ruta-abosulta-main-proyecto
 - `--onefile`: Genera un solo archivo ejecutable
 - `--windowed`: Ejecución sin ventana de terminal
 
-> **Nota**: Requiere `pip install pyinstaller pillow`
+> **Nota**: Requiere `pip install pyinstaller pillow` y el reemplazo del key en el archivo helpers (linea 11)
 
 🔧 **Herramienta útil**: [Complemento RPA para Firefox](https://addons.mozilla.org/en-US/firefox/addon/rpa/)
 
