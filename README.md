@@ -77,8 +77,56 @@ py -m PyInstaller --icon="ruta-absoluta-archivo-ico" ruta-abosulta-main-proyecto
 
 [Plantilla base](https://github.com/villalbaluis/arquitectura-bots-python) proporcionada por [Luis Villalba](https://github.com/villalbaluis)
 
-
 ## 🔄 Diagrama de Ejecución
+
+               +---------------------+
+               |        Inicio       |
+               +----------+----------+
+                          |
+                          v
+               +----------+----------+
+               |Crear entorno virtual|
+               +----------+----------+
+                          |
+                          v
+               +----------+----------+
+               |   Activar entorno   |
+               +----------+----------+
+                          |
+               +---------------------+
+               |                     |
+               v                     v
+    +----------+----------+    +-----+-----+
+    |Instalar dependencias|    | Actualizar|
+    | (requirements.txt)  |    | (pipreqs) |
+    +----------+----------+    +-----+-----+
+               |                     |
+               +----------+----------+
+                          |
+                          v
+                +---------+---------+
+                |  Ejecutar scraper |
+                +---------+---------+
+                          |
+                +-------------------+
+                |                   |
+                v                   v
+     +----------+----------+  +-----+-----+
+     | Compilar a .exe     |  | Finalizar |
+     | (PyInstaller)       |  |           |
+     +----------+----------+  +-----------+
+                |
+                v
+     +----------+----------+
+     | Generar ejecutable  |
+     | (--onefile/windowed)|
+     +----------+----------+
+                |
+                v
+     +----------+----------+
+     |      Finalizar      |
+     +---------------------+
+
 
 ```mermaid
 graph TD
@@ -94,52 +142,3 @@ graph TD
     H -->|No| J[Finalizar]
     I --> K[Generar ejecutable]
     K --> J
-
-             +---------------------+
-             |        Inicio       |
-             +----------+----------+
-                        |
-                        v
-             +----------+----------+
-             |Crear entorno virtual|
-             +----------+----------+
-                        |
-                        v
-             +----------+----------+
-             |   Activar entorno   |
-             +----------+----------+
-                        |
-              +-------------------+
-              |                   |
-              v                   v
-   +----------+----------+  +-----+-----+
-   |Instalar dependencias|  | Actualizar|
-   | (requirements.txt)  |  | (pipreqs) |
-   +----------+----------+  +-----+-----+
-              |                   |
-              +---------+---------+
-                        |
-                        v
-              +---------+---------+
-              |  Ejecutar scraper |
-              +---------+---------+
-                        |
-              +-------------------+
-              |                   |
-              v                   v
-   +----------+----------+  +-----+-----+
-   | Compilar a .exe     |  | Finalizar |
-   | (PyInstaller)       |  |           |
-   +----------+----------+  +-----------+
-              |
-              v
-   +----------+----------+
-   | Generar ejecutable  |
-   | (--onefile/windowed)|
-   +----------+----------+
-              |
-              v
-   +----------+----------+
-   |      Finalizar      |
-   +---------------------+
-
