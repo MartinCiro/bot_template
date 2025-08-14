@@ -2,8 +2,19 @@
     "sena": {
         "url_login": "http://senasofiaplus.edu.co:80/sofia-public/",
         "url_home": "http://senasofiaplus.edu.co/sofia/home/principal.faces",
-        "url_certificado": "https://certificados.sena.edu.co/CertificadoDigital/com.sena.login"
+        "url_certificado": {
+            "base":"https://certificados.sena.edu.co/CertificadoDigital/com.sena",
+            "constulta": "consultacer",
+            "descarga":"guardar?var1="
+        },
+        "login": {
+            "USER": "usuario_sofia_plus_sena",
+            "PASSWD": "passwd_sofia_plus_sena"
+        }
     },
+    "email": "correoGmail",
+    "passwd": "contraseña_de_aplicaciones",
+    "KEY": "apiKey_gemini",
     "SELENIUM": {
         "driver_path": "//plugins//gecko//geckodriver.exe"
     }
