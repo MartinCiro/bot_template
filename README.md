@@ -20,7 +20,7 @@ print(f"CLAVE GENERADA: {new_key}")
 
 ### 3. Configuración de variables de entorno
 
-Crea un archivo `.env` basado en `example.env` con esta estructura:
+Crea un archivo `.env` basado en `example` con esta estructura:
 
 ```bash
 # Credenciales de Sofia Plus (obligatorias)

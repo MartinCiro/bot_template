@@ -82,4 +82,4 @@
 
 //span[contains(., 'TECNÓLOGO EN ANALISIS')]/ancestor::tr//a[contains(@id, 'clConsultaCertificadosgenerados')]
 
-//h2[contains(translate(normalize-space(.), 'ESTADO DEL CERTIFICADO', 'estado del certificado'), 'estado del certificado')]/following-sibling::table//span[contains(text(), 'CERTIFICADO')]
+//div[contains(@class, 'toast-message') and contains(text(), 'El texto digitado no corresponde con la imagen')]

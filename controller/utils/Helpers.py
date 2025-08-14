@@ -5,6 +5,7 @@ from cryptography.fernet import Fernet
 from datetime import datetime, timedelta
 from requests import request, exceptions
 from json import load, dump, JSONDecodeError
+from base64 import b64decode
 # endregion importando librerias necesarias
 
 relativePath = getcwd()
@@ -66,13 +67,42 @@ class Helpers:
         """
         texto = f.decrypt(valor)
         return texto.decode("utf-8")
+    
+    def decode_image_base64(self, data_uri: str) -> bytes:
+        # Si empieza con "data:", quitar el encabezado
+        if data_uri.startswith("data:"):
+            data_uri = data_uri.split(",", 1)[1]
+        # Quitar espacios/saltos y corregir padding
+        data_uri = data_uri.strip().replace("\n", "").replace(" ", "")
+        missing_padding = len(data_uri) % 4
+        if missing_padding:
+            data_uri += "=" * (4 - missing_padding)
+        return b64decode(data_uri)
 
     # Nos ayuda a extraer un valor del config
-    def get_value(self, key, value = None):
+    def get_value(self, key, value=None):
         with open(self.__routeConfig, "r", encoding="utf-8") as file:
             config = load(file)
 
-        return str(config.get(key, {}).get(value, "")) if value is not None else config.get(key, {})
+        data = config.get(key, {})
+
+        if value is None:
+            return data  # Devuelve todo el bloque si no hay subclave
+
+        # Si se pasa una sola subclave como string
+        if isinstance(value, str):
+            return str(data.get(value, ""))
+
+        # Si se pasa una lista o tupla, navega por varias subclaves
+        if isinstance(value, (list, tuple)):
+            for subkey in value:
+                if isinstance(data, dict):
+                    data = data.get(subkey, "")
+                else:
+                    return ""
+            return str(data)
+
+        return ""
         
     def get_json(self, ruta_archivo):
         """Carga un archivo JSON local y lo devuelve como un diccionario."""
